@@ -1,0 +1,22 @@
+[workspace]
+members = ["programs/analux", "tests"]
+default-members = ["programs/analux", "tests"]
+resolver = "2"
+
+[workspace.dependencies]
+anchor-lang = "=0.32.1"
+# Anchor's mint-init macro references token_interface even for a classic Token account.
+# The instruction contexts still pin Program<Token>, so Token-2022 is not accepted.
+anchor-spl = { version = "=0.32.1", default-features = false, features = ["token", "associated_token", "token_2022", "token_2022_extensions"] }
+solana-falcon512 = { git = "https://github.com/blueshift-gg/solana-falcon512", rev = "ed456633dc281e313d2d0c99557bfaadf544d093" }
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
+opt-level = 3
+
+[profile.release.build-override]
+opt-level = 3
+incremental = false
+codegen-units = 1

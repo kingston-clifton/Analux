@@ -1,0 +1,9 @@
+/target/
+/.tools/
+/.cache/
+/.anchor/
+/.local/
+/.DS_Store/
+/node_modules/
+/.env*/
+**/*-keypair.json
